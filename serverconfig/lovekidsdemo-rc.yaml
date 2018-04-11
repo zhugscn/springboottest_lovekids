@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: lovekidsdemo
+spec:
+  replicas: 1
+  selector:
+    app: lovekidsdemo
+  template:
+    metadata:
+      labels:
+        app: lovekidsdemo
+    spec:
+      containers:
+      - name: lovekidsdemo
+        image: hisensetest/lovekidsdemo
+        imagePullPolicy: IfNotPresent   #或者使用Never 
+        ports:
+        - containerPort: 3306
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "255"
+
